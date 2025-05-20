@@ -1,0 +1,22 @@
+events {}
+
+http {
+    server {
+        listen 443 ssl;
+        server_name ${DOMAIN};
+
+        ssl_certificate     /etc/nginx/certs/${DOMAIN}.pem;
+        ssl_certificate_key /etc/nginx/certs/${DOMAIN}-key.pem;
+
+        location / {
+            root /usr/share/nginx/html;
+            index index.html;
+            try_files ${DOLLAR}uri ${DOLLAR}uri/ =404;
+        }
+    }
+
+    server {
+        listen 80;
+        return 301 https://${DOLLAR}host${DOLLAR}request_uri;
+    }
+}
