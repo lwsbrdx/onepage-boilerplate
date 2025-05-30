@@ -7,4 +7,7 @@ up:
 down:
 	@docker compose --env-file .env down
 
-init: gen-certs up
+init: gen-certs add-host up
+
+add-host:
+	@sh ./.scripts/add-host.sh
