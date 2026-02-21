@@ -3,3 +3,6 @@
 
 # Created certs
 .docker/nginx/certs
+
+# Others
+.DS_Store
